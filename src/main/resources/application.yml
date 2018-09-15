@@ -26,7 +26,7 @@ spring:
     show-sql: true
 
 jdbc.driver: com.mysql.jdbc.Driver
-jdbc.url: jdbc:mysql://localhost:3306/zdjky?characterEncoding=utf-8&useSSL=false
+jdbc.url: jdbc:mysql://192.168.1.116:3306/zdjky?characterEncoding=utf-8&useSSL=false
 jdbc.username: root
 jdbc.password: 123456
 jdbc.filters: stat
@@ -44,11 +44,12 @@ jdbc.poolPreparedStatements: true
 jdbc.maxOpenPreparedStatements: 20
 
 
-#mybatis:
-#  typeAliasesPackage: com.foxconn.model
-#  mapperLocations: classpath:mapper/*Mapper.xml
+mybatis:
+  typeAliasesPackage: com.foxconn.model
+  mapperLocations: classpath:mapper/*Mapper.xml
+  config-location: classpath:mybatis-config.xml
 
-mybatis_config_file: mybatis-config.xml
-mapper_path: /mapper/*Mapper.xml
-type_aliases_package: com.foxconn.model
+#mybatis_config_file: mybatis-config.xml
+#mapper_path: /mapper/*Mapper.xml
+#type_aliases_package: com.foxconn.model
 

@@ -22,10 +22,12 @@ public class BloodPressuresServiceImpl implements BloodPressuresService {
     @Autowired
     private BloodPressuresMapper bloodPressuresMapper;
 
+/*
     @Override
     public BloodPressures getById(Integer id) {
         return bloodPressuresMapper.selectByPrimaryKey(id);
     }
+*/
 
     @Override
     public Map insertSelective(BloodPressures bloodPressures) {

@@ -12,6 +12,7 @@ import org.springframework.core.io.support.ResourcePatternResolver;
 import javax.sql.DataSource;
 import java.io.IOException;
 
+/*
 @Configuration
 public class SessionFactoryConfiguration {
     @Value("${mybatis_config_file}")
@@ -37,3 +38,4 @@ public class SessionFactoryConfiguration {
         return sqlSessionFactoryBean;
     }
 }
+*/

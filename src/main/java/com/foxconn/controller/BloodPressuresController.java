@@ -17,10 +17,12 @@ public class BloodPressuresController {
     @Autowired
     private BloodPressuresService bloodPressuresService;
 
+/*
     @RequestMapping("/bloodPressures/{id}")
     public BloodPressures getById(@PathVariable("id") Integer id){
         return bloodPressuresService.getById(id);
     }
+*/
 
     @RequestMapping(value = "/bloodPressures",method = RequestMethod.POST)
     public Map insertBloodPressures(@RequestBody BloodPressures bloodPressures){
