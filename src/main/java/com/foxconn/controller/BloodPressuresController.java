@@ -33,7 +33,6 @@ public class BloodPressuresController {
 
     @RequestMapping(value = "/bloodPressures/list",method = RequestMethod.POST)
     public Map getBloodPressures(@RequestBody BloodPressuresVo bloodPressuresVo){
-        System.out.println(new Date().getTime());
         return bloodPressuresService.getListByDate(bloodPressuresVo);
     }
 
