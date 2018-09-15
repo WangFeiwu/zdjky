@@ -9,7 +9,7 @@ import java.util.Map;
  * @Date: 2018/9/14 9:32
  */
 public interface BloodPressuresService {
-//    BloodPressures getById(Integer id);
+    BloodPressures getById(Integer id);
 
     Map insertSelective(BloodPressures record);
 }

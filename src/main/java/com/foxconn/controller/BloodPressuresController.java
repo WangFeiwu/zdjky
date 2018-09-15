@@ -1,6 +1,5 @@
 package com.foxconn.controller;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.foxconn.model.BloodPressures;
 import com.foxconn.service.BloodPressuresService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,15 +17,13 @@ public class BloodPressuresController {
     @Autowired
     private BloodPressuresService bloodPressuresService;
 
-/*
     @RequestMapping("/bloodPressures/{id}")
     public BloodPressures getById(@PathVariable("id") Integer id){
         return bloodPressuresService.getById(id);
     }
-*/
 
     @RequestMapping(value = "/bloodPressures",method = RequestMethod.POST)
-    public Map insertBloodPressures(@RequestBody BloodPressures bloodPressures) throws JsonProcessingException {
+    public Map insertBloodPressures(@RequestBody BloodPressures bloodPressures){
         return bloodPressuresService.insertSelective(bloodPressures);
     }
 

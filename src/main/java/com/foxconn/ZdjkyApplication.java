@@ -5,7 +5,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-@MapperScan("com.foxconn.mapper")
+//@MapperScan("com.foxconn.mapper")
 public class ZdjkyApplication {
 
     public static void main(String[] args) {
