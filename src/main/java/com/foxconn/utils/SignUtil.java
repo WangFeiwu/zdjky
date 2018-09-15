@@ -33,7 +33,7 @@ public class SignUtil {
                     sb.append("&");
                 }
                 if (entry.getValue() instanceof Date){
-                    sb.append(entry.getKey()).append("=").append(((Date) entry.getValue()).getTime());
+                    sb.append(entry.getKey()).append("=").append(((Date) entry.getValue()).getTime()/1000);
                 }else {
                     sb.append(entry.getKey()).append("=").append(entry.getValue()==null?"":entry.getValue());
                 }

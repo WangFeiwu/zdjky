@@ -2,9 +2,11 @@ package com.foxconn.controller;
 
 import com.foxconn.model.BloodPressures;
 import com.foxconn.service.BloodPressuresService;
+import com.foxconn.vo.BloodPressuresVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
 import java.util.Map;
 
 /**
@@ -27,6 +29,12 @@ public class BloodPressuresController {
     @RequestMapping(value = "/bloodPressures",method = RequestMethod.POST)
     public Map insertBloodPressures(@RequestBody BloodPressures bloodPressures){
         return bloodPressuresService.insertSelective(bloodPressures);
+    }
+
+    @RequestMapping(value = "/bloodPressures/list",method = RequestMethod.POST)
+    public Map getBloodPressures(@RequestBody BloodPressuresVo bloodPressuresVo){
+        System.out.println(new Date().getTime());
+        return bloodPressuresService.getListByDate(bloodPressuresVo);
     }
 
 }
