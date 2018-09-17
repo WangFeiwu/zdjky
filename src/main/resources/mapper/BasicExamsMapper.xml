@@ -232,4 +232,15 @@
       other_info = #{otherInfo,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
+
+  <select id="getListByDate" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from basic_exams
+    where account_id = #{accountId,jdbcType=INTEGER}
+    <![CDATA[ and create_time >= #{createTimeStart,jdbcType=TIMESTAMP} ]]>
+    <![CDATA[ and create_time <= #{createTimeEnd,jdbcType=TIMESTAMP} ]]>
+    order by create_time desc
+    limit #{pageNum},10
+  </select>
 </mapper>

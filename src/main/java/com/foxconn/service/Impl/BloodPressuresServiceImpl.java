@@ -5,7 +5,7 @@ import com.foxconn.mapper.BloodPressuresMapper;
 import com.foxconn.model.BloodPressures;
 import com.foxconn.service.BloodPressuresService;
 import com.foxconn.utils.SignUtil;
-import com.foxconn.vo.BloodPressuresVo;
+import com.foxconn.vo.GetParamVo;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,13 +24,6 @@ public class BloodPressuresServiceImpl implements BloodPressuresService {
 
     @Autowired
     private BloodPressuresMapper bloodPressuresMapper;
-
-/*
-    @Override
-    public BloodPressures getById(Integer id) {
-        return bloodPressuresMapper.selectByPrimaryKey(id);
-    }
-*/
 
     @Override
     public Map insertSelective(BloodPressures bloodPressures) {
@@ -77,7 +70,7 @@ public class BloodPressuresServiceImpl implements BloodPressuresService {
     }
 
     @Override
-    public Map getListByDate(BloodPressuresVo bloodPressuresVo) {
+    public Map getListByDate(GetParamVo bloodPressuresVo) {
         Map<String,Object> map=new HashMap<>();
         if (bloodPressuresVo!=null){
             if (StringUtils.isNotBlank(bloodPressuresVo.getOrgCode())&&
