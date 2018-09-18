@@ -1,6 +1,6 @@
 package com.foxconn.service.Impl;
 
-import com.foxconn.common.ResponseCode2;
+import com.foxconn.common.ResponseCode;
 import com.foxconn.common.ServerResponse;
 import com.foxconn.mapper.BasicExamsMapper;
 import com.foxconn.model.BasicExams;
@@ -40,16 +40,16 @@ public class BasicExamsServiceImpl implements BasicExamsService {
                     if (resultCount>0){
                         return ServerResponse.createBySuccess("上传成功！");
                     }else {
-                        return ServerResponse.createByError(ResponseCode2.FAIL.getReturnCode(),"上传失败！",ResponseCode2.FAIL.getStatusCode());
+                        return ServerResponse.createByError(ResponseCode.FAIL.getReturnCode(),"上传失败！", ResponseCode.FAIL.getStatusCode());
                     }
                 }else {
-                    return ServerResponse.createByError(ResponseCode2.ERROR_SIGN.getReturnCode(),"上传失败！",ResponseCode2.ERROR_SIGN.getStatusCode());
+                    return ServerResponse.createByError(ResponseCode.ERROR_SIGN.getReturnCode(),"上传失败！", ResponseCode.ERROR_SIGN.getStatusCode());
                 }
             }else {
-                return ServerResponse.createByError(ResponseCode2.LACK_KEY.getReturnCode(),"上传失败！",ResponseCode2.LACK_KEY.getStatusCode());
+                return ServerResponse.createByError(ResponseCode.LACK_KEY.getReturnCode(),"上传失败！", ResponseCode.LACK_KEY.getStatusCode());
             }
         }
-        return ServerResponse.createByError(ResponseCode2.NULL_PARAM.getReturnCode(),"上传失败！",ResponseCode2.NULL_PARAM.getStatusCode());
+        return ServerResponse.createByError(ResponseCode.NULL_PARAM.getReturnCode(),"上传失败！", ResponseCode.NULL_PARAM.getStatusCode());
     }
 
     @Override
@@ -73,15 +73,15 @@ public class BasicExamsServiceImpl implements BasicExamsService {
                                 basicExamsVo.getCreateTimeStart(),basicExamsVo.getCreateTimeEnd(),basicExamsVo.getPageNum());
                         return ServerResponse.createBySuccess("下载成功",basicExamsList);
                     }else {
-                        return ServerResponse.createByError(ResponseCode2.ERROR_ENDTIME.getReturnCode(),"下载失败！",ResponseCode2.ERROR_ENDTIME.getStatusCode());
+                        return ServerResponse.createByError(ResponseCode.ERROR_ENDTIME.getReturnCode(),"下载失败！", ResponseCode.ERROR_ENDTIME.getStatusCode());
                     }
                 }else {
-                    return ServerResponse.createByError(ResponseCode2.ERROR_SIGN.getReturnCode(),"下载失败！",ResponseCode2.ERROR_SIGN.getStatusCode());
+                    return ServerResponse.createByError(ResponseCode.ERROR_SIGN.getReturnCode(),"下载失败！", ResponseCode.ERROR_SIGN.getStatusCode());
                 }
             }else {
-                return ServerResponse.createByError(ResponseCode2.LACK_KEY.getReturnCode(),"下载失败！",ResponseCode2.LACK_KEY.getStatusCode());
+                return ServerResponse.createByError(ResponseCode.LACK_KEY.getReturnCode(),"下载失败！", ResponseCode.LACK_KEY.getStatusCode());
             }
         }
-        return ServerResponse.createByError(ResponseCode2.NULL_PARAM.getReturnCode(),"下载失败！",ResponseCode2.NULL_PARAM.getStatusCode());
+        return ServerResponse.createByError(ResponseCode.NULL_PARAM.getReturnCode(),"下载失败！", ResponseCode.NULL_PARAM.getStatusCode());
     }
 }

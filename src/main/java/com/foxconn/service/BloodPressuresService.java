@@ -1,9 +1,8 @@
 package com.foxconn.service;
 
+import com.foxconn.common.ServerResponse;
 import com.foxconn.model.BloodPressures;
 import com.foxconn.vo.GetParamVo;
-
-import java.util.Map;
 
 /**
  * @Author: wfw
@@ -11,7 +10,7 @@ import java.util.Map;
  */
 public interface BloodPressuresService {
 
-    Map insertSelective(BloodPressures bloodPressures);
+    ServerResponse insertSelective(BloodPressures bloodPressures);
 
-    Map getListByDate(GetParamVo bloodPressuresVo);
+    ServerResponse getListByDate(GetParamVo bloodPressuresVo);
 }

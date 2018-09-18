@@ -1,6 +1,7 @@
 package com.foxconn.service.Impl;
 
 import com.foxconn.common.ResponseCode;
+import com.foxconn.common.ServerResponse;
 import com.foxconn.mapper.BloodPressuresMapper;
 import com.foxconn.model.BloodPressures;
 import com.foxconn.service.BloodPressuresService;
@@ -11,9 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 /**
  * @Author: wfw
@@ -26,8 +25,7 @@ public class BloodPressuresServiceImpl implements BloodPressuresService {
     private BloodPressuresMapper bloodPressuresMapper;
 
     @Override
-    public Map insertSelective(BloodPressures bloodPressures) {
-        Map<String,Object> map=new HashMap<>();
+    public ServerResponse insertSelective(BloodPressures bloodPressures) {
         if (bloodPressures!=null){
             if (StringUtils.isNotBlank(bloodPressures.getOrgCode())&&
                     StringUtils.isNotBlank(bloodPressures.getNonceStr())&&
@@ -43,35 +41,22 @@ public class BloodPressuresServiceImpl implements BloodPressuresService {
                 if (sign.equals(bloodPressures.getSign())){
                     int resultCount=bloodPressuresMapper.insertSelective(bloodPressures);
                     if (resultCount>0){
-                        map.put("returnCode", "SUCCESS");
-                        map.put("returnStr", ResponseCode.SUCCESS.getReturnStr());
+                        return ServerResponse.createBySuccess("上传成功！");
                     }else {
-                        map.put("returnCode", "FAIL");
-                        map.put("returnStr", ResponseCode.FAIL.getReturnStr());
-                        map.put("errCode", ResponseCode.FAIL.getStatus());
+                        return ServerResponse.createByError(ResponseCode.FAIL.getReturnCode(),"上传失败！", ResponseCode.FAIL.getStatusCode());
                     }
                 }else {
-                    map.put("returnCode", "FAIL");
-                    map.put("returnStr", ResponseCode.ERROR_SIGN.getReturnStr());
-                    map.put("errCode", ResponseCode.ERROR_SIGN.getStatus());
+                    return ServerResponse.createByError(ResponseCode.ERROR_SIGN.getReturnCode(),"上传失败！", ResponseCode.ERROR_SIGN.getStatusCode());
                 }
-
             }else {
-                map.put("returnCode", "FAIL");
-                map.put("returnStr", ResponseCode.NULL_KEY.getReturnStr());
-                map.put("errCode", ResponseCode.NULL_KEY.getStatus());
+                return ServerResponse.createByError(ResponseCode.LACK_KEY.getReturnCode(),"上传失败！", ResponseCode.LACK_KEY.getStatusCode());
             }
-        }else {
-            map.put("returnCode", "FAIL");
-            map.put("returnStr", ResponseCode.NULL_PARAM.getReturnStr());
-            map.put("errCode", ResponseCode.NULL_PARAM.getStatus());
         }
-        return map;
+        return ServerResponse.createByError(ResponseCode.NULL_PARAM.getReturnCode(),"上传失败！", ResponseCode.NULL_PARAM.getStatusCode());
     }
 
     @Override
-    public Map getListByDate(GetParamVo bloodPressuresVo) {
-        Map<String,Object> map=new HashMap<>();
+    public ServerResponse getListByDate(GetParamVo bloodPressuresVo) {
         if (bloodPressuresVo!=null){
             if (StringUtils.isNotBlank(bloodPressuresVo.getOrgCode())&&
                     StringUtils.isNotBlank(bloodPressuresVo.getNonceStr())&&
@@ -89,29 +74,17 @@ public class BloodPressuresServiceImpl implements BloodPressuresService {
                     if (bloodPressuresVo.getCreateTimeStart().getTime()<=bloodPressuresVo.getCreateTimeEnd().getTime()){
                         List<BloodPressures> bloodPressuresList=bloodPressuresMapper.getListByDate(bloodPressuresVo.getAccountId(),
                                 bloodPressuresVo.getCreateTimeStart(),bloodPressuresVo.getCreateTimeEnd(),bloodPressuresVo.getPageNum());
-                        map.put("returnCode", "SUCCESS");
-                        map.put("returnStr", ResponseCode.SUCCESS.getReturnStr());
-                        map.put("data",bloodPressuresList);
+                        return ServerResponse.createBySuccess("下载成功",bloodPressuresList);
                     }else {
-                        map.put("returnCode", "FAIL");
-                        map.put("returnStr", ResponseCode.ERROR_ENDTIME.getReturnStr());
-                        map.put("errCode", ResponseCode.ERROR_ENDTIME.getStatus());
+                        return ServerResponse.createByError(ResponseCode.ERROR_ENDTIME.getReturnCode(),"下载失败！", ResponseCode.ERROR_ENDTIME.getStatusCode());
                     }
                 }else {
-                    map.put("returnCode", "FAIL");
-                    map.put("returnStr", ResponseCode.ERROR_SIGN.getReturnStr());
-                    map.put("errCode", ResponseCode.ERROR_SIGN.getStatus());
+                    return ServerResponse.createByError(ResponseCode.ERROR_SIGN.getReturnCode(),"下载失败！", ResponseCode.ERROR_SIGN.getStatusCode());
                 }
             }else {
-                map.put("returnCode", "FAIL");
-                map.put("returnStr", ResponseCode.NULL_KEY.getReturnStr());
-                map.put("errCode", ResponseCode.NULL_KEY.getStatus());
+                return ServerResponse.createByError(ResponseCode.LACK_KEY.getReturnCode(),"下载失败！", ResponseCode.LACK_KEY.getStatusCode());
             }
-        }else {
-            map.put("returnCode", "FAIL");
-            map.put("returnStr", ResponseCode.NULL_PARAM.getReturnStr());
-            map.put("errCode", ResponseCode.NULL_PARAM.getStatus());
         }
-        return map;
+        return ServerResponse.createByError(ResponseCode.NULL_PARAM.getReturnCode(),"下载失败！", ResponseCode.NULL_PARAM.getStatusCode());
     }
 }

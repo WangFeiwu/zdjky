@@ -5,26 +5,26 @@ package com.foxconn.common;
  * @Date: 2018/9/14 10:53
  */
 public enum ResponseCode {
-    SUCCESS(0,"成功！"),
-    FAIL(10000001,"失败！"),
-    NULL_PARAM(10000002,"失败！"),//没有参数
-    NULL_KEY(10000003,"失败！"),//某些字段为空
-    ERROR_SIGN(10000004,"失败！"),//签名错误
-    ERROR_ENDTIME(10000005,"失败！");//结束时间错误
+    SUCCESS(0,"SUCCESS"),
+    FAIL(10000001,"FAIL"),
+    NULL_PARAM(10000002,"FAIL"),//没有参数
+    LACK_KEY(10000003,"FAIL"),//某些字段为空
+    ERROR_SIGN(10000004,"FAIL"),//签名错误
+    ERROR_ENDTIME(10000005,"FAIL");//结束时间错误
 
-    private int status;
-    private String returnStr;
+    private int statusCode;
+    private String returnCode;
 
-    ResponseCode(int status, String returnStr) {
-        this.status = status;
-        this.returnStr = returnStr;
+    ResponseCode(int statusCode, String returnCode) {
+        this.statusCode = statusCode;
+        this.returnCode = returnCode;
     }
 
-    public int getStatus() {
-        return status;
+    public int getStatusCode() {
+        return statusCode;
     }
 
-    public String getReturnStr() {
-        return returnStr;
+    public String getReturnCode() {
+        return returnCode;
     }
 }
