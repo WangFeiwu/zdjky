@@ -70,7 +70,7 @@ public class BasicExamsServiceImpl implements BasicExamsService {
                 if (sign.equals(basicExamsVo.getSign())){
                     if (basicExamsVo.getCreateTimeStart().getTime()<=basicExamsVo.getCreateTimeEnd().getTime()){
                         List<BasicExams> basicExamsList=basicExamsMapper.getListByDate(basicExamsVo.getAccountId(),
-                                basicExamsVo.getCreateTimeStart(),basicExamsVo.getCreateTimeEnd(),basicExamsVo.getPageNum());
+                                basicExamsVo.getCreateTimeStart(),basicExamsVo.getCreateTimeEnd(),basicExamsVo.getPageNum()*10);
                         return ServerResponse.createBySuccess("下载成功",basicExamsList);
                     }else {
                         return ServerResponse.createByError(ResponseCode.ERROR_ENDTIME.getReturnCode(),"下载失败！", ResponseCode.ERROR_ENDTIME.getStatusCode());

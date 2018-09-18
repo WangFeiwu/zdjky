@@ -72,7 +72,7 @@ public class GlusServiceImpl implements GlusService {
                 if (sign.equals(glusVo.getSign())){
                     if (glusVo.getCreateTimeStart().getTime()<=glusVo.getCreateTimeEnd().getTime()){
                         List<Glus> glusList=glusMapper.getListByDate(glusVo.getAccountId(),
-                                glusVo.getCreateTimeStart(),glusVo.getCreateTimeEnd(),glusVo.getPageNum());
+                                glusVo.getCreateTimeStart(),glusVo.getCreateTimeEnd(),glusVo.getPageNum()*10);
                         return ServerResponse.createBySuccess("下载成功",glusList);
                     }else {
                         return ServerResponse.createByError(ResponseCode.ERROR_ENDTIME.getReturnCode(),"下载失败！", ResponseCode.ERROR_ENDTIME.getStatusCode());

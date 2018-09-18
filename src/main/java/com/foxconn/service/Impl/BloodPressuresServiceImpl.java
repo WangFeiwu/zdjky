@@ -73,7 +73,7 @@ public class BloodPressuresServiceImpl implements BloodPressuresService {
                 if (sign.equals(bloodPressuresVo.getSign())){
                     if (bloodPressuresVo.getCreateTimeStart().getTime()<=bloodPressuresVo.getCreateTimeEnd().getTime()){
                         List<BloodPressures> bloodPressuresList=bloodPressuresMapper.getListByDate(bloodPressuresVo.getAccountId(),
-                                bloodPressuresVo.getCreateTimeStart(),bloodPressuresVo.getCreateTimeEnd(),bloodPressuresVo.getPageNum());
+                                bloodPressuresVo.getCreateTimeStart(),bloodPressuresVo.getCreateTimeEnd(),bloodPressuresVo.getPageNum()*10);
                         return ServerResponse.createBySuccess("下载成功",bloodPressuresList);
                     }else {
                         return ServerResponse.createByError(ResponseCode.ERROR_ENDTIME.getReturnCode(),"下载失败！", ResponseCode.ERROR_ENDTIME.getStatusCode());

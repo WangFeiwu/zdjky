@@ -32,6 +32,7 @@ public class HeartRatesServiceImpl implements HeartRatesService {
                     StringUtils.isNotBlank(heartRates.getSign())&&
                     StringUtils.isNotBlank(heartRates.getSignType())&&
                     StringUtils.isNotBlank(heartRates.getAccountId())&&
+                    heartRates.getEcgdata()!=null&&
                     heartRates.getCreateTime()!=null
             ){
                 heartRates.setCreateTime(new Date(heartRates.getCreateTime().getTime()*1000));
@@ -71,7 +72,7 @@ public class HeartRatesServiceImpl implements HeartRatesService {
                 if (sign.equals(heartRatesVo.getSign())){
                     if (heartRatesVo.getCreateTimeStart().getTime()<=heartRatesVo.getCreateTimeEnd().getTime()){
                         List<HeartRates> heartRatesList=heartRatesMapper.getListByDate(heartRatesVo.getAccountId(),
-                                heartRatesVo.getCreateTimeStart(),heartRatesVo.getCreateTimeEnd(),heartRatesVo.getPageNum());
+                                heartRatesVo.getCreateTimeStart(),heartRatesVo.getCreateTimeEnd(),heartRatesVo.getPageNum()*10);
                         return ServerResponse.createBySuccess("下载成功",heartRatesList);
                     }else {
                         return ServerResponse.createByError(ResponseCode.ERROR_ENDTIME.getReturnCode(),"下载失败！", ResponseCode.ERROR_ENDTIME.getStatusCode());

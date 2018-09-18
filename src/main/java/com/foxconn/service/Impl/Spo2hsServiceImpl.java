@@ -72,7 +72,7 @@ public class Spo2hsServiceImpl implements Spo2hsService {
                 if (sign.equals(spo2hsVo.getSign())){
                     if (spo2hsVo.getCreateTimeStart().getTime()<=spo2hsVo.getCreateTimeEnd().getTime()){
                         List<Spo2hs> spo2hsList=spo2hsMapper.getListByDate(spo2hsVo.getAccountId(),
-                                spo2hsVo.getCreateTimeStart(),spo2hsVo.getCreateTimeEnd(),spo2hsVo.getPageNum());
+                                spo2hsVo.getCreateTimeStart(),spo2hsVo.getCreateTimeEnd(),spo2hsVo.getPageNum()*10);
                         return ServerResponse.createBySuccess("下载成功",spo2hsList);
                     }else {
                         return ServerResponse.createByError(ResponseCode.ERROR_ENDTIME.getReturnCode(),"下载失败！", ResponseCode.ERROR_ENDTIME.getStatusCode());
